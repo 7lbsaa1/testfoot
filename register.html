@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KORA KDM - إنشاء حساب جديد</title>
+    <title>7lbsaa كورة - إنشاء حساب جديد</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -16,8 +16,9 @@
         }
 
         body {
-            background: linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.95)), 
-                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            /* تعيين الخلفية الموحدة back.jpg */
+            background: linear-gradient(rgba(10, 17, 24, 0.75), rgba(10, 17, 24, 0.85)), 
+                        url('back.jpg') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             display: flex;
@@ -25,7 +26,6 @@
             align-items: center;
             padding: 40px 20px;
             overflow-x: hidden;
-            position: relative;
         }
 
         .container {
@@ -37,16 +37,23 @@
             z-index: 1;
         }
 
-        /* قسم اللوجو في الأعلى */
+        /* قسم اللوجو المحدث */
         .logo-section {
             text-align: center;
             margin-bottom: 25px;
         }
 
-        .logo-section .ball-icon {
-            font-size: 50px;
-            color: #ffffff;
-            animation: rotateBall 10s linear infinite;
+        .logo-section .main-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .logo-section .ball-gif {
+            width: 45px;
+            height: 45px;
+            display: block;
+            margin: 0 auto 10px auto;
         }
 
         .logo-section h1 {
@@ -59,7 +66,7 @@
         .logo-section h1 span { color: #4CAF50; }
         .logo-section p { color: #a0aec0; font-size: 13px; font-weight: 300; }
 
-        /* الكارت الزجاجي العريض لإنشاء حساب */
+        /* الكارت الزجاجي */
         .glass-card {
             background: rgba(15, 23, 33, 0.75);
             backdrop-filter: blur(12px);
@@ -75,7 +82,6 @@
         .card-title { color: #ffffff; font-size: 24px; font-weight: 700; margin-bottom: 8px; }
         .card-subtitle { color: #a0aec0; font-size: 13px; font-weight: 400; margin-bottom: 25px; }
 
-        /* صف الحقول المزدوجة (الاسم الكامل واسم المستخدم) */
         .row-fields {
             display: flex;
             gap: 15px;
@@ -115,11 +121,7 @@
             outline: none;
             transition: all 0.3s ease;
             text-align: right;
-            appearance: none; /* إخفاء سهم السيلكت الافتراضي لتصميمه يدوياً */
-        }
-
-        .input-wrapper input::placeholder {
-            color: #4a5568;
+            appearance: none;
         }
 
         .input-wrapper input:focus, .input-wrapper select:focus {
@@ -143,7 +145,6 @@
             cursor: pointer;
         }
 
-        /* سهم خاص بحقل تاريخ الميلاد على اليمين */
         .select-arrow {
             position: absolute;
             right: 15px;
@@ -158,7 +159,6 @@
             color: #4CAF50;
         }
 
-        /* خانة الموافقة على الشروط */
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -166,11 +166,10 @@
             margin-top: 5px;
             margin-bottom: 22px;
             text-align: right;
-            cursor: pointer;
         }
 
         .checkbox-group input {
-            accent-color: #4CAF50; /* تلوين مربع الاختيار باللون الأخضر */
+            accent-color: #4CAF50;
             width: 16px;
             height: 16px;
             cursor: pointer;
@@ -179,8 +178,6 @@
         .checkbox-group label {
             color: #cbd5e0;
             font-size: 13px;
-            user-select: none;
-            cursor: pointer;
         }
 
         .checkbox-group label span {
@@ -188,7 +185,6 @@
             font-weight: 600;
         }
 
-        /* زر الإرسال */
         .btn-submit {
             width: 100%;
             background: #4CAF50;
@@ -209,7 +205,6 @@
             box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
         }
 
-        /* أسفل الكارت */
         .card-footer {
             margin-top: 25px;
             color: #cbd5e0;
@@ -225,17 +220,8 @@
 
         .card-footer a:hover { text-decoration: underline; }
 
-        @keyframes rotateBall {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* تحسين التجاوب مع الشاشات الصغيرة للموبايل لجعل صف الاسم ينزل عمودياً */
         @media (max-width: 400px) {
-            .row-fields {
-                flex-direction: column;
-                gap: 0;
-            }
+            .row-fields { flex-direction: column; gap: 0; }
         }
     </style>
 </head>
@@ -243,8 +229,9 @@
 
     <div class="container">
         <div class="logo-section">
-            <i class="fa-solid fa-regular fa-futbol ball-icon"></i>
-            <h1>KORA <span>KDM</span></h1>
+            <img src="7lbsaa7.png" alt="7lbsaa Logo" class="main-logo">
+            <img src="football-soccer.gif" alt="Football Animated" class="ball-gif">
+            <h1>7lbsaa <span>كورة</span></h1>
             <p>عيش شغف كرة القدم</p>
         </div>
 
@@ -302,10 +289,9 @@
                         <select required onfocus="this.size=4;" onblur="this.size=1;" onchange="this.size=1; this.blur();">
                             <option value="" disabled selected hidden>اختر تاريخ ميلادك</option>
                             <script>
-                                // سكربت تلقائي لتوليد السنوات ليكون الخيار ديناميكي ومريح
                                 const currentYear = new Date().getFullYear();
                                 for(let i = currentYear; i >= 1950; i--) {
-                                    document.write(`<option value="${i}">${i}</option>`);
+                                    document.write(`<option value="${i}">${i}</optionblank>`);
                                 }
                             </script>
                         </select>
@@ -316,7 +302,7 @@
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="termsCheck" required>
-                    <label Mammal for="termsCheck">أوافق على <span>الشروط والأحكام</span> و<span>سياسة الخصوصية</span></label>
+                    <label for="termsCheck">أوافق على <span>الشروط والأحكام</span> و<span>سياسة الخصوصية</span></label>
                 </div>
 
                 <button type="submit" class="btn-submit">إنشاء حساب</button>
@@ -328,11 +314,9 @@
         </div>
     </div>
 
-<script type="module">
-        // استدعاء دوال الفايربيز من ملف الإعدادات
+    <script type="module">
         import { auth, database, createUserWithEmailAndPassword, ref, set } from "./firebase-config.js";
 
-        // تشغيل وإخفاء الباسورد
         window.togglePass = function(id, icon) {
             const input = document.getElementById(id);
             if (input.type === 'password') {
@@ -344,12 +328,10 @@
             }
         }
 
-        // الاستماع لحدث إرسال الفورم (إنشاء حساب)
         const registerForm = document.querySelector('form');
         registerForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // منع الصفحة من الريفرش
+            e.preventDefault();
 
-            // جلب البيانات من الحقول المكتوبة
             const fullName = document.querySelectorAll('input[type="text"]')[0].value;
             const username = document.querySelectorAll('input[type="text"]')[1].value;
             const email = document.querySelector('input[type="email"]').value;
@@ -357,34 +339,30 @@
             const pass2 = document.getElementById('pass2').value;
             const birthYear = document.querySelector('select').value;
 
-            // التحقق من تطابق كلمتي المرور
             if (pass1 !== pass2) {
                 alert("❌ كلمتا المرور غير متطابقتين!");
                 return;
             }
 
-            // 1. تسجيل الحساب في الـ Authentication الخاص بفايربيز
             createUserWithEmailAndPassword(auth, email, pass1)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     
-                    // 2. حفظ البيانات الإضافية في الـ Realtime Database باسم اليوزر
                     set(ref(database, 'users/' + user.uid), {
                         fullName: fullName,
                         username: username,
                         email: email,
                         birthYear: birthYear,
-                        coins: 100, // رصيد افتراضي ترحيبي للاعب البداية
-                        score: 0,   // الاسكور الافتراضي في اللعبة
-                        role: "user" // رتبة الحساب
+                        coins: 100, 
+                        score: 0,   
+                        role: "user" 
                     })
                     .then(() => {
-                        alert("🎉 تم إنشاء حسابك بنجاح وجاري توجيهك للردهة!");
-                        window.location.href = "login.html"; // توجيه لصفحة تسجيل الدخول
+                        alert("🎉 تم إنشاء حسابك بنجاح! جاري توجيهك لصفحة الدخول...");
+                        window.location.href = "login.html"; 
                     });
                 })
                 .catch((error) => {
-                    // عرض الأخطاء الشائعة بشكل مفهوم عربي
                     if (error.code === 'auth/email-already-in-use') {
                         alert("❌ هذا البريد الإلكتروني مسجل بالفعل بحساب آخر!");
                     } else if (error.code === 'auth/weak-password') {
@@ -394,5 +372,6 @@
                     }
                 });
         });
-    </script></body>
+    </script>
+</body>
 </html>
