@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حليشة كورة - اختبر معلوماتك في كرة القدم</title>
+    <title>7lbsaa كورة - اختبر معلوماتك في كرة القدم</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -44,21 +44,33 @@
             align-items: center;
         }
 
-        .logo {
+        .user-profile {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 22px;
-            font-weight: 800;
+            gap: 8px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 5px 12px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background 0.3s;
         }
 
-        .logo img {
-            width: 35px;
-            height: 35px;
+        .user-profile:hover {
+            background: rgba(255, 255, 255, 0.08);
         }
 
-        .logo span {
-            color: #4CAF50;
+        .user-profile img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50px;
+            border: 2px solid #4CAF50;
+            object-fit: cover;
+        }
+
+        .user-profile i {
+            font-size: 12px;
+            color: #a0aec0;
         }
 
         nav {
@@ -90,44 +102,48 @@
             border-radius: 2px;
         }
 
-        .user-profile {
+        .logo {
             display: flex;
             align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 5px 12px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: background 0.3s;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 800;
         }
 
-        .user-profile:hover {
-            background: rgba(255, 255, 255, 0.08);
+        .logo span {
+            color: #4CAF50;
         }
 
-        .user-profile img {
-            width: 32px;
-            height: 32px;
-            border-radius: 50px;
-            border: 2px solid #4CAF50;
-        }
-
-        .user-profile i {
-            font-size: 12px;
-            color: #a0aec0;
-        }
-
-        /* --- 2. سيكشن البطل الرئيسي (Hero Section) --- */
+        /* --- 2. سيكشن البطل الرئيسي وخلفية الفيديو (Hero Section with Video) --- */
         .hero {
             position: relative;
             min-height: 100vh;
             padding: 140px 6% 60px 6%;
             display: flex;
             align-items: center;
-            background: linear-gradient(180deg, rgba(5,11,17,0.3) 0%, rgba(5,11,17,0.95) 85%), 
-                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-            background-size: cover;
+            overflow: hidden;
+        }
+
+        /* حاوية الفيديو الممتدة كخلفية كاملة */
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        /* طبقة حماية داكنة وتأثير زجاجي فوق الفيديو لضمان وضوح النصوص */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(5, 11, 17, 0.4) 0%, rgba(5, 11, 17, 0.95) 90%);
+            z-index: -1;
         }
 
         .hero-content {
@@ -141,7 +157,7 @@
             font-weight: 900;
             line-height: 1.4;
             margin-bottom: 15px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
         }
 
         .hero-content h2 span {
@@ -150,11 +166,12 @@
         }
 
         .hero-content p {
-            color: #a0aec0;
+            color: #e2e8f0;
             font-size: 16px;
             line-height: 1.7;
             margin-bottom: 35px;
             font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
         .hero-buttons {
@@ -198,6 +215,7 @@
             align-items: center;
             gap: 10px;
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .btn-login-hero:hover {
@@ -205,21 +223,9 @@
             transform: translateY(-2px);
         }
 
-        /* صورة نيازك خلفية النجوم المدمجة الكبيرة */
-        .hero-players-img {
-            position: absolute;
-            left: 2%;
-            bottom: 0;
-            width: 62%;
-            max-width: 900px;
-            z-index: 1;
-            pointer-events: none;
-            filter: drop-shadow(0 -10px 20px rgba(0,0,0,0.3));
-        }
-
         /* --- 3. قسم أنواع الاختبارات (Quiz Types) --- */
         .quiz-section {
-            padding: 60px 6%;
+            padding: 80px 6%;
             text-align: center;
             position: relative;
         }
@@ -250,7 +256,6 @@
             margin-top: 20px;
         }
 
-        /* الكروت الزجاجية الشفافة والمطابقة للصورة */
         .quiz-card {
             background: rgba(15, 23, 33, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -337,16 +342,6 @@
             position: relative;
         }
 
-        /* تزيين زاوية الفوتر بالكرة والشبكة المضيئة */
-        .footer-bg-ball {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 320px;
-            pointer-events: none;
-            opacity: 0.85;
-        }
-
         .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -405,7 +400,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-width: 220px;
+            max-width: 240px;
         }
 
         .social-btn {
@@ -449,40 +444,29 @@
         }
 
         /* --- التحسينات والشاشات المتجاوبة (Responsive UI) --- */
-        @media (max-width: 1024px) {
-            .hero-players-img {
-                width: 55%;
-            }
-            .hero-content h2 {
-                font-size: 34px;
-            }
-        }
-
         @media (max-width: 768px) {
             header {
                 padding: 15px 4%;
             }
             nav {
-                display: none; /* إخفاء القائمة العادية في الموبايل لعمل قائمة منبثقة لاحقاً */
+                gap: 15px;
+            }
+            nav a {
+                font-size: 14px;
             }
             .hero {
-                padding-top: 12px;
-                flex-direction: column;
-                justify-content: center;
+                padding-top: 100px;
                 text-align: center;
+                justify-content: center;
             }
             .hero-content {
                 text-align: center;
-                margin-top: 60px;
+            }
+            .hero-content h2 {
+                font-size: 32px;
             }
             .hero-buttons {
                 margin: 0 auto;
-            }
-            .hero-players-img {
-                position: relative;
-                width: 100%;
-                left: 0;
-                margin-top: 30px;
             }
             .stats-bar {
                 grid-template-columns: repeat(2, 1fr);
@@ -494,32 +478,35 @@
 <body>
 
     <header>
-        <div class="user-profile">
+        <div class="user-profile" onclick="location.href='profile.html'">
             <i class="fa-solid fa-chevron-down"></i>
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="User Profile">
+            <img src="person.png" alt="User Profile">
         </div>
 
         <nav>
-            <a href="contact.html">اتصل بنا</a>
+            <a href="https://7lbsaa1.github.io/7lbsaa.contact-us/">اتصل بنا</a>
             <a href="about.html">من نحن</a>
-            <a href="articles.html">المقالات</a>
-            <a href="leaderboard.html">المتصدرين</a>
-            <a href="quizzes.html">الاختبارات</a>
             <a href="index.html" class="active">الرئيسية</a>
         </nav>
 
         <div class="logo">
-            <a href="index.html">حليشة <span>كرة</span></a>
+            <a href="index.html">7lbsaa <span>كورة</span></a>
             <i class="fa-solid fa-futbol" style="color: #4CAF50;"></i>
         </div>
     </header>
 
     <section class="hero">
+        <video class="video-background" autoplay loop muted playsinline>
+            <source src="vid.background.7lbsaa.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+
         <div class="hero-content">
             <h2>اختبر معلوماتك <span>في كرة القدم</span></h2>
             <p>العب اختبارات ممتعة وتنافس مع الآلاف من عشاق كرة القدم حول العالم</p>
             <div class="hero-buttons">
-                <a href="quizzes.html" class="btn-play">
+                <a href="login.html" class="btn-play">
                     <i class="fa-solid fa-futbol"></i>
                     ابدأ باللعب
                 </a>
@@ -529,15 +516,13 @@
                 </a>
             </div>
         </div>
-        
-        <img src="https://i.postimg.co/N08fL8Xz/players-combined.png" alt="Football Stars" class="hero-players-img" onerror="this.src='https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=800&q=80'; this.style.position='static'; this.style.width='40%'">
     </section>
 
     <section class="quiz-section">
         <h2 class="section-title">اختر نوع الاختبار</h2>
         
         <div class="quiz-grid">
-            <div class="quiz-card" onclick="location.href='quiz-mix.html'">
+            <div class="quiz-card" onclick="location.href='login.html'">
                 <div class="icon-wrapper">
                     <i class="fa-regular fa-square-minus" style="transform: rotate(90deg);"></i>
                 </div>
@@ -545,7 +530,7 @@
                 <p>أسئلة من كل المجالات</p>
             </div>
 
-            <div class="quiz-card" onclick="location.href='quiz-tournaments.html'">
+            <div class="quiz-card" onclick="location.href='login.html'">
                 <div class="icon-wrapper">
                     <i class="fa-solid fa-trophy"></i>
                 </div>
@@ -553,15 +538,15 @@
                 <p>اختبر معلوماتك عن البطولات</p>
             </div>
 
-            <div class="quiz-card" onclick="location.href='quiz-clubs.html'">
+            <div class="quiz-card" onclick="location.href='login.html'">
                 <div class="icon-wrapper">
-                    <i class="fa-regular fa-shield-halved fa-shield"></i>
+                    <i class="fa-regular fa-shield fa-shield-halved"></i>
                 </div>
                 <h3>أندية</h3>
                 <p>اختبر معلوماتك عن الأندية</p>
             </div>
 
-            <div class="quiz-card" onclick="location.href='quiz-players.html'">
+            <div class="quiz-card" onclick="location.href='login.html'">
                 <div class="icon-wrapper">
                     <i class="fa-solid fa-child-reaching"></i>
                 </div>
@@ -603,21 +588,19 @@
     </section>
 
     <footer>
-        <img src="https://i.postimg.co/g2f7XwXy/footer-ball-net.png" alt="Net Decoration" class="footer-bg-ball" onerror="this.style.display='none'">
-
         <div class="footer-container">
             <div class="footer-social">
                 <h5>تابعنا على</h5>
                 <div class="social-buttons">
-                    <a href="#" class="social-btn">
+                    <a href="https://www.tiktok.com/@7lbsaa1" target="_blank" class="social-btn">
                         <i class="fa-brands fa-tiktok"></i>
                         TikTok
                     </a>
-                    <a href="#" class="social-btn">
+                    <a href="https://x.com/7lbsaa1" target="_blank" class="social-btn">
                         <i class="fa-brands fa-x-twitter"></i>
-                        Twitter
+                        Twitter (X)
                     </a>
-                    <a href="#" class="social-btn">
+                    <a href="https://www.facebook.com/profile.php?id=61584178882412&locale=ar_AR" target="_blank" class="social-btn">
                         <i class="fa-brands fa-facebook-f"></i>
                         Facebook
                     </a>
@@ -628,25 +611,22 @@
                 <h5>روابط سريعة</h5>
                 <ul>
                     <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="quizzes.html">الاختبارات</a></li>
-                    <li><a href="leaderboard.html">المتصدرين</a></li>
-                    <li><a href="articles.html">المقالات</a></li>
                     <li><a href="about.html">من نحن</a></li>
-                    <li><a href="contact.html">اتصل بنا</a></li>
+                    <li><a href="https://7lbsaa1.github.io/7lbsaa.contact-us/">اتصل بنا</a></li>
                 </ul>
             </div>
 
             <div class="footer-about">
                 <div class="footer-logo">
-                    حليشة <span>كرة</span>
+                    7lbsaa <span>كورة</span>
                     <i class="fa-solid fa-futbol" style="color: #4CAF50;"></i>
                 </div>
-                <p>موقع حليشة كورة هو وجهتك الأولى لاختبارات كرة القدم. اختبر معلوماتك، وتعلم، وتنافس مع أصدقائك في أجواء ممتعة ومفيدة.</p>
+                <p>موقع 7lbsaa كورة هو وجهتك الأولى لاختبارات كرة القدم. اختبر معلوماتك، وتعلم، وتنافس مع أصدقائك في أجواء ممتعة ومفيدة.</p>
             </div>
         </div>
 
         <div class="copyright">
-            كل شيء محفوظ © <span>2024</span>
+            كل شيء محفوظ © <span>2026</span>
         </div>
     </footer>
 
