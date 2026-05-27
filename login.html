@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KORA KDM - تسجيل الدخول</title>
+    <title>7lbsaa كورة - تسجيل الدخول</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -16,9 +16,9 @@
         }
 
         body {
-            /* خلفية الملعب الداكنة والمثيرة الكروية */
-            background: linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.95)), 
-                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            /* تعيين الخلفية الموحدة back.jpg */
+            background: linear-gradient(rgba(10, 17, 24, 0.75), rgba(10, 17, 24, 0.85)), 
+                        url('back.jpg') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             display: flex;
@@ -26,19 +26,6 @@
             align-items: center;
             padding: 20px;
             overflow-x: hidden;
-            position: relative;
-        }
-
-        /* زوايا الإضاءة الخضراء في أطراف الصفحة */
-        body::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(76, 175, 80, 0.2) 0%, transparent 70%);
-            pointer-events: none;
         }
 
         .container {
@@ -50,24 +37,29 @@
             z-index: 1;
         }
 
-        /* قسم اللوجو في الأعلى */
+        /* قسم اللوجو المحدث */
         .logo-section {
             text-align: center;
             margin-bottom: 25px;
         }
 
-        .logo-section .ball-icon {
-            font-size: 50px;
-            color: #ffffff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-            animation: rotateBall 10s linear infinite;
+        .logo-section .main-logo {
+            width: 120px; /* ضبط حجم شعار المنصة */
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .logo-section .ball-gif {
+            width: 45px; /* حجم كرة الـ GIF المضيئة */
+            height: 45px;
+            display: block;
+            margin: 0 auto 10px auto;
         }
 
         .logo-section h1 {
             color: #ffffff;
             font-size: 28px;
             font-weight: 800;
-            letter-spacing: 1px;
             margin-top: 5px;
         }
 
@@ -79,7 +71,6 @@
             color: #a0aec0;
             font-size: 13px;
             font-weight: 300;
-            margin-top: 2px;
         }
 
         /* كارت التصميم الزجاجي */
@@ -121,7 +112,6 @@
             font-size: 13px;
             font-weight: 600;
             margin-bottom: 8px;
-            padding-right: 2px;
         }
 
         .input-wrapper {
@@ -135,16 +125,12 @@
             background: rgba(10, 15, 22, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            padding: 12px 14px 12px 42px; /* مسافة للأيقونة اليسرى */
+            padding: 12px 14px 12px 42px;
             color: #ffffff;
             font-size: 14px;
             outline: none;
             transition: all 0.3s ease;
             text-align: right;
-        }
-
-        .input-wrapper input::placeholder {
-            color: #4a5568;
         }
 
         .input-wrapper input:focus {
@@ -153,10 +139,9 @@
             background: rgba(10, 15, 22, 0.8);
         }
 
-        /* الأيقونات داخل الحقول */
         .input-icon-right {
             position: absolute;
-            left: 15px; /* موضوعة لليسار لدعم لغات العرض الـ RTL المتناسقة */
+            left: 15px;
             color: #4a5568;
             font-size: 16px;
             transition: color 0.3s ease;
@@ -176,7 +161,6 @@
             color: #4CAF50;
         }
 
-        /* رابط نسيت كلمة المرور */
         .forgot-pass {
             display: block;
             text-align: right;
@@ -186,14 +170,9 @@
             margin-top: -12px;
             margin-bottom: 24px;
             font-weight: 600;
-            transition: opacity 0.2s ease;
         }
 
-        .forgot-pass:hover {
-            opacity: 0.8;
-        }
-
-        /* زر الإرسال الرئيسي الأخضر */
+        /* زر الإرسال الرئيسي */
         .btn-submit {
             width: 100%;
             background: #4CAF50;
@@ -210,7 +189,6 @@
             gap: 8px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-            margin-bottom: 25px;
         }
 
         .btn-submit:hover {
@@ -219,54 +197,6 @@
             box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
         }
 
-        /* الفاصل (أو) */
-        .divider {
-            display: flex;
-            align-items: center;
-            color: #4a5568;
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
-
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.08);
-        }
-        
-        .divider span {
-            padding: 0 10px;
-        }
-
-        /* أزرار السوشيال ميديا */
-        .btn-social {
-            width: 100%;
-            background: rgba(10, 15, 22, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
-            padding: 11px;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-social:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .btn-social i.fa-google { color: #ea4335; }
-        .btn-social i.fa-facebook-f { color: #1877f2; }
-
-        /* أسفل الكارت التبديل بين الصفحات */
         .card-footer {
             margin-top: 25px;
             color: #cbd5e0;
@@ -283,19 +213,15 @@
         .card-footer a:hover {
             text-decoration: underline;
         }
-
-        @keyframes rotateBall {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="logo-section">
-            <i class="fa-solid fa-regular fa-futbol ball-icon"></i>
-            <h1>KORA <span>KDM</span></h1>
+            <img src="7lbsaa7.png" alt="7lbsaa Logo" class="main-logo">
+            <img src="football-soccer.gif" alt="Football Animated" class="ball-gif">
+            <h1>7lbsaa <span>كورة</span></h1>
             <p>عيش شغف كرة القدم</p>
         </div>
 
@@ -329,31 +255,15 @@
                 </button>
             </form>
 
-            <div class="divider">
-                <span>أو</span>
-            </div>
-
-            <button class="btn-social">
-                <i class="fa-brands fa-google"></i>
-                تسجيل الدخول عبر Google
-            </button>
-
-            <button class="btn-social" style="margin-bottom: 0;">
-                <i class="fa-brands fa-facebook-f"></i>
-                تسجيل الدخول عبر Facebook
-            </button>
-
             <div class="card-footer">
                 ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a>
             </div>
         </div>
     </div>
 
-<script type="module">
-        // استدعاء دوال تسجيل الدخول من ملف الإعدادات
+    <script type="module">
         import { auth, signInWithEmailAndPassword } from "./firebase-config.js";
 
-        // تشغيل وإخفاء الباسورد
         window.togglePassword = function() {
             const passwordInput = document.getElementById('passwordField');
             const toggleIcon = document.querySelector('.password-toggle');
@@ -366,7 +276,6 @@
             }
         }
 
-        // الاستماع لحدث تسجيل الدخول
         const loginForm = document.querySelector('form');
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -374,12 +283,10 @@
             const email = document.querySelector('input[type="email"]').value;
             const password = document.getElementById('passwordField').value;
 
-            // التحقق من الحساب في فايربيز
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    alert("🔓 تم تسجيل الدخول بنجاح! جاهز للتحدي؟");
-                    // هنا هنوجهه لصفحة الـ Lobby أو اللعبة الرئيسية بمجرد ما نكودها
-                    window.location.href = "lobby.html"; 
+                    alert("🔓 تم تسجيل الدخول بنجاح! جاري تحويلك للرئيسية...");
+                    window.location.href = "index.html"; // التوجيه التلقائي للملف المحدث index.html
                 })
                 .catch((error) => {
                     if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
