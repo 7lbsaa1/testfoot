@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KORA KDM - إنشاء حساب جديد</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.95)), 
+                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* قسم اللوجو في الأعلى */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-section .ball-icon {
+            font-size: 50px;
+            color: #ffffff;
+            animation: rotateBall 10s linear infinite;
+        }
+
+        .logo-section h1 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .logo-section h1 span { color: #4CAF50; }
+        .logo-section p { color: #a0aec0; font-size: 13px; font-weight: 300; }
+
+        /* الكارت الزجاجي العريض لإنشاء حساب */
+        .glass-card {
+            background: rgba(15, 23, 33, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            width: 100%;
+            padding: 35px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .card-title { color: #ffffff; font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+        .card-subtitle { color: #a0aec0; font-size: 13px; font-weight: 400; margin-bottom: 25px; }
+
+        /* صف الحقول المزدوجة (الاسم الكامل واسم المستخدم) */
+        .row-fields {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row-fields .input-group {
+            flex: 1;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            color: #cbd5e0;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            background: rgba(10, 15, 22, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 14px 12px 42px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            text-align: right;
+            appearance: none; /* إخفاء سهم السيلكت الافتراضي لتصميمه يدوياً */
+        }
+
+        .input-wrapper input::placeholder {
+            color: #4a5568;
+        }
+
+        .input-wrapper input:focus, .input-wrapper select:focus {
+            border-color: rgba(76, 175, 80, 0.5);
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.15);
+            background: rgba(10, 15, 22, 0.8);
+        }
+
+        .input-icon-right {
+            position: absolute;
+            left: 15px;
+            color: #4a5568;
+            font-size: 16px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            color: #4a5568;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* سهم خاص بحقل تاريخ الميلاد على اليمين */
+        .select-arrow {
+            position: absolute;
+            right: 15px;
+            color: #4a5568;
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        .input-wrapper input:focus ~ .input-icon-right,
+        .input-wrapper input:focus ~ .password-toggle,
+        .input-wrapper select:focus ~ .select-arrow {
+            color: #4CAF50;
+        }
+
+        /* خانة الموافقة على الشروط */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+            margin-bottom: 22px;
+            text-align: right;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            accent-color: #4CAF50; /* تلوين مربع الاختيار باللون الأخضر */
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            color: #cbd5e0;
+            font-size: 13px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .checkbox-group label span {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        /* زر الإرسال */
+        .btn-submit {
+            width: 100%;
+            background: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-submit:hover {
+            background: #43a047;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        /* أسفل الكارت */
+        .card-footer {
+            margin-top: 25px;
+            color: #cbd5e0;
+            font-size: 13px;
+        }
+
+        .card-footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 700;
+            margin-right: 5px;
+        }
+
+        .card-footer a:hover { text-decoration: underline; }
+
+        @keyframes rotateBall {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* تحسين التجاوب مع الشاشات الصغيرة للموبايل لجعل صف الاسم ينزل عمودياً */
+        @media (max-width: 400px) {
+            .row-fields {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-section">
+            <i class="fa-solid fa-regular fa-futbol ball-icon"></i>
+            <h1>KORA <span>KDM</span></h1>
+            <p>عيش شغف كرة القدم</p>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="card-title">إنشاء حساب جديد</h2>
+            <p class="card-subtitle">انضم إلينا الآن وكن جزءاً من مجتمع عشاق كرة القدم</p>
+
+            <form action="#">
+                <div class="row-fields">
+                    <div class="input-group">
+                        <label>الاسم الكامل</label>
+                        <div class="input-wrapper">
+                            <input type="text" placeholder="أدخل اسمك الكامل" required>
+                            <i class="fa-regular fa-user input-icon-right"></i>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>اسم المستخدم</label>
+                        <div class="input-wrapper">
+                            <input type="text" placeholder="اختر اسم مستخدم" required>
+                            <i class="fa-regular fa-user input-icon-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>البريد الإلكتروني</label>
+                    <div class="input-wrapper">
+                        <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        <i class="fa-regular fa-envelope input-icon-right"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <div class="input-wrapper">
+                        <input type="password" placeholder="أدخل كلمة المرور" id="pass1" required>
+                        <i class="fa-regular fa-eye-slash password-toggle" onclick="togglePass('pass1', this)"></i>
+                        <i class="fa-solid fa-lock input-icon-right"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>تأكيد كلمة المرور</label>
+                    <div class="input-wrapper">
+                        <input type="password" placeholder="أعد إدخال كلمة المرور" id="pass2" required>
+                        <i class="fa-regular fa-eye-slash password-toggle" onclick="togglePass('pass2', this)"></i>
+                        <i class="fa-solid fa-lock input-icon-right"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>تاريخ الميلاد</label>
+                    <div class="input-wrapper">
+                        <select required onfocus="this.size=4;" onblur="this.size=1;" onchange="this.size=1; this.blur();">
+                            <option value="" disabled selected hidden>اختر تاريخ ميلادك</option>
+                            <script>
+                                // سكربت تلقائي لتوليد السنوات ليكون الخيار ديناميكي ومريح
+                                const currentYear = new Date().getFullYear();
+                                for(let i = currentYear; i >= 1950; i--) {
+                                    document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                        <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        <i class="fa-regular fa-calendar input-icon-right"></i>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="termsCheck" required>
+                    <label Mammal for="termsCheck">أوافق على <span>الشروط والأحكام</span> و<span>سياسة الخصوصية</span></label>
+                </div>
+
+                <button type="submit" class="btn-submit">إنشاء حساب</button>
+            </form>
+
+            <div class="card-footer">
+                لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePass(id, icon) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            }
+        }
+    </script>
+</body>
+</html>
