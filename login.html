@@ -349,9 +349,12 @@
         </div>
     </div>
 
-    <script>
-        // دالة لإظهار وإخفاء كلمة المرور تفاعلياً عند الضغط على العين
-        function togglePassword() {
+<script type="module">
+        // استدعاء دوال تسجيل الدخول من ملف الإعدادات
+        import { auth, signInWithEmailAndPassword } from "./firebase-config.js";
+
+        // تشغيل وإخفاء الباسورد
+        window.togglePassword = function() {
             const passwordInput = document.getElementById('passwordField');
             const toggleIcon = document.querySelector('.password-toggle');
             if (passwordInput.type === 'password') {
@@ -362,6 +365,30 @@
                 toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
             }
         }
+
+        // الاستماع لحدث تسجيل الدخول
+        const loginForm = document.querySelector('form');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.querySelector('input[type="email"]').value;
+            const password = document.getElementById('passwordField').value;
+
+            // التحقق من الحساب في فايربيز
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert("🔓 تم تسجيل الدخول بنجاح! جاهز للتحدي؟");
+                    // هنا هنوجهه لصفحة الـ Lobby أو اللعبة الرئيسية بمجرد ما نكودها
+                    window.location.href = "lobby.html"; 
+                })
+                .catch((error) => {
+                    if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                        alert("❌ خطأ في البريد الإلكتروني أو كلمة المرور!");
+                    } else {
+                        alert("❌ خطأ أثناء تسجيل الدخول: " + error.message);
+                    }
+                });
+        });
     </script>
 </body>
 </html>
