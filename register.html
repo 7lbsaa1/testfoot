@@ -153,10 +153,11 @@
     </div>
 
     <script type="module">
-        // استدعاء الأدوات بالأسماء الصريحة والإشارة إلى ملف الكونفيج الجديد v2 لتخطي الكاش
-        import { auth, database, createUserWithEmailAndPassword, ref, set } from "./firebase-config-v2.js";
+        /* إضافة الـ ?v=2 الرمزية تجبر المتصفح وسيرفر GitHub على كسر الكاش وسحب ملف 
+          الإعدادات الجديد الذي يحتوي على الـ apiKey الصحيح فوراً 
+        */
+        import { auth, database, createUserWithEmailAndPassword, ref, set } from "./firebase-config-v2.js?v=2";
 
-        // دالة إظهار وإخفاء كلمة المرور
         window.togglePass = function(id, icon) {
             const input = document.getElementById(id);
             if (input.type === 'password') {
@@ -168,10 +169,9 @@
             }
         }
 
-        // معالجة إرسال الفورم وحفظ البيانات
         const registerForm = document.querySelector('form');
         registerForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // منع الصفحة من إعادة التحميل الافتراضية
+            e.preventDefault();
 
             const fullName = document.getElementById('regFullName').value;
             const username = document.getElementById('regUsername').value;
@@ -180,24 +180,21 @@
             const pass2 = document.getElementById('regPass2').value;
             const birthYear = document.getElementById('regBirthYear').value;
 
-            // التحقق من تطابق كلمتي المرور
             if (pass1 !== pass2) {
                 alert("❌ كلمتا المرور غير متطابقتين!");
                 return;
             }
 
-            // إنشاء الحساب في Firebase Authentication
             createUserWithEmailAndPassword(auth, email, pass1)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     
-                    // حفظ البيانات الإضافية داخل الـ Realtime Database وإعطاء المستخدم هدية 100 كوين
                     set(ref(database, 'users/' + user.uid), {
                         fullName: fullName,
                         username: username,
                         email: email,
                         birthYear: birthYear,
-                        coins: 100, // الهدية الترحيبية
+                        coins: 100, 
                         score: 0,
                         role: "user"
                     })
