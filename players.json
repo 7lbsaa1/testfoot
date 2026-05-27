@@ -1,0 +1,84 @@
+[
+  { "name": "فينيسيوس جونيور", "club": "ريال مدريد", "nationality": "البرازيل", "position": "مهاجم" },
+  { "name": "كيليان مبابي", "club": "ريال مدريد", "nationality": "فرنسا", "position": "مهاجم" },
+  { "name": "جود بيلينجهام", "club": "ريال مدريد", "nationality": "إنجلترا", "position": "خط وسط" },
+  { "name": "فيديريكو فالفيردي", "club": "ريال مدريد", "nationality": "أوروغواي", "position": "خط وسط" },
+  { "name": "رودريغو غوس", "club": "ريال مدريد", "nationality": "البرازيل", "position": "مهاجم" },
+  { "name": "أوريلين تشواميني", "club": "ريال مدريد", "nationality": "فرنسا", "position": "خط وسط" },
+  { "name": "إدواردو كامافينجا", "club": "ريال مدريد", "nationality": "فرنسا", "position": "خط وسط" },
+  { "name": "أنطونيو روديغر", "club": "ريال مدريد", "nationality": "ألمانيا", "position": "مدافع" },
+  { "name": "إيدير ميليتاو", "club": "ريال مدريد", "nationality": "البرازيل", "position": "مدافع" },
+  { "name": "داني كارفاخال", "club": "ريال مدريد", "nationality": "إسبانيا", "position": "مدافع" },
+  { "name": "تيبو كورتوا", "club": "ريال مدريد", "nationality": "بلجيكا", "position": "حارس مرمى" },
+  { "name": "أردا غولر", "club": "ريال مدريد", "nationality": "تركيا", "position": "خط وسط" },
+  { "name": "إندريك", "club": "ريال مدريد", "nationality": "البرازيل", "position": "مهاجم" },
+
+  { "name": "لامين يامال", "club": "برشلونة", "nationality": "إسبانيا", "position": "مهاجم" },
+  { "name": "روبرت ليفاندوفسكي", "club": "برشلونة", "nationality": "بولندا", "position": "مهاجم" },
+  { "name": "رافينيا دياز", "club": "برشلونة", "nationality": "البرازيل", "position": "مهاجم" },
+  { "name": "بيدري غونزاليس", "club": "برشلونة", "nationality": "إسبانيا", "position": "خط وسط" },
+  { "name": "غافي", "club": "برشلونة", "nationality": "إسبانيا", "position": "خط وسط" },
+  { "name": "فرينكي دي يونغ", "club": "برشلونة", "nationality": "هولندا", "position": "خط وسط" },
+  { "name": "داني أولمو", "club": "برشلونة", "nationality": "إسبانيا", "position": "خط وسط" },
+  { "name": "رونالد أراوخو", "club": "برشلونة", "nationality": "أوروغواي", "position": "مدافع" },
+  { "name": "جول كوندي", "club": "برشلونة", "nationality": "فرنسا", "position": "مدافع" },
+  { "name": "باو كوبارسي", "club": "برشلونة", "nationality": "إسبانيا", "position": "مدافع" },
+  { "name": "مارك أندريه تير شتيغن", "club": "برشلونة", "nationality": "ألمانيا", "position": "حارس مرمى" },
+
+  { "name": "محمد صلاح", "club": "ليفربول", "nationality": "مصر", "position": "مهاجم" },
+  { "name": "لويس دياز", "club": "ليفربول", "nationality": "كولومبيا", "position": "مهاجم" },
+  { "name": "داروين نونيز", "club": "ليفربول", "nationality": "أوروغواي", "position": "مهاجم" },
+  { "name": "أليكسيس ماك أليستير", "club": "ليفربول", "nationality": "الأرجنتين", "position": "خط وسط" },
+  { "name": "فيرجيل فان دايك", "club": "ليفربول", "nationality": "هولندا", "position": "مدافع" },
+  { "name": "أليسون بيكر", "club": "ليفربول", "nationality": "البرازيل", "position": "حارس مرمى" },
+
+  { "name": "إيرلينج هالاند", "club": "مانشستر سيتي", "nationality": "النرويج", "position": "مهاجم" },
+  { "name": "كيفين دي بروين", "club": "مانشستر سيتي", "nationality": "بلجيكا", "position": "خط وسط" },
+  { "name": "رودري هيرنانديز", "club": "مانشستر سيتي", "nationality": "إسبانيا", "position": "خط وسط" },
+
+  { "name": "بوكايو ساكا", "club": "أرسنال", "nationality": "إنجلترا", "position": "مهاجم" },
+  { "name": "مارتين أوديغارد", "club": "أرسنال", "nationality": "النرويج", "position": "خط وسط" },
+  { "name": "ديكلان رايس", "club": "أرسنال", "nationality": "إنجلترا", "position": "خط وسط" },
+
+  { "name": "كول بالمر", "club": "تشيلسي", "nationality": "إنجلترا", "position": "خط وسط" },
+
+  { "name": "برونو فيرنانديز", "club": "مانشستر يونايتد", "nationality": "البرتغال", "position": "خط وسط" },
+  { "name": "ماركوس راشفورد", "club": "مانشستر يونايتد", "nationality": "إنجلترا", "position": "مهاجم" },
+
+  { "name": "سون هيونغ مين", "club": "توتنهام", "nationality": "كوريا الجنوبية", "position": "مهاجم" },
+
+  { "name": "هاري كين", "club": "بايرن ميونخ", "nationality": "إنجلترا", "position": "مهاجم" },
+  { "name": "جمال موسيالا", "club": "بايرن ميونخ", "nationality": "ألمانيا", "position": "خط وسط" },
+  { "name": "مانويل نوير", "club": "بايرن ميونخ", "nationality": "ألمانيا", "position": "حارس مرمى" },
+
+  { "name": "فلوريان فيرتز", "club": "باير ليفركوزن", "nationality": "ألمانيا", "position": "خط وسط" },
+
+  { "name": "عثمان ديمبيلي", "club": "باريس سان جيرمان", "nationality": "فرنسا", "position": "مهاجم" },
+  { "name": "أشرف حكيمي", "club": "باريس سان جيرمان", "nationality": "المغرب", "position": "مدافع" },
+
+  { "name": "أنطوان غريزمان", "club": "أتلتيكو مدريد", "nationality": "فرنسا", "position": "مهاجم" },
+  { "name": "خافي غالان", "club": "أتلتيكو مدريد", "nationality": "إسبانيا", "position": "مدافع" },
+
+  { "name": "لاوتارو مارتينيز", "club": "إنتر ميلان", "nationality": "الأرجنتين", "position": "مهاجم" },
+
+  { "name": "رافائيل لياو", "club": "إيه سي ميلان", "nationality": "البرتغال", "position": "مهاجم" },
+
+  { "name": "كريستيانو رونالدو", "club": "النصر", "nationality": "البرتغال", "position": "مهاجم" },
+  { "name": "ساديو ماني", "club": "النصر", "nationality": "السنغال", "position": "مهاجم" },
+
+  { "name": "ألكسندر ميتروفيتش", "club": "الهلال", "nationality": "صربيا", "position": "مهاجم" },
+  { "name": "سالم الدوسري", "club": "الهلال", "nationality": "السعودية", "position": "مهاجم" },
+  { "name": "ياشين بونو", "club": "الهلال", "nationality": "المغرب", "position": "حارس مرمى" },
+
+  { "name": "كريم بنزيما", "club": "الاتحاد", "nationality": "فرنسا", "position": "مهاجم" },
+
+  { "name": "رياض محرز", "club": "الأهلي السعودي", "nationality": "الجزائر", "position": "مهاجم" },
+  { "name": "إدوارد ميندي", "club": "الأهلي السعودي", "nationality": "السنغال", "position": "حارس مرمى" },
+
+  { "name": "ليونيل ميسي", "club": "إنتر ميامي", "nationality": "الأرجنتين", "position": "مهاجم" },
+
+  { "name": "إمام عاشور", "club": "الأهلي المصري", "nationality": "مصر", "position": "خط وسط" },
+  { "name": "محمد الشناوي", "club": "الأهلي المصري", "nationality": "مصر", "position": "حارس مرمى" },
+
+  { "name": "أحمد مصطفى زيزو", "club": "الزمالك", "nationality": "مصر", "position": "مهاجم" }
+]
