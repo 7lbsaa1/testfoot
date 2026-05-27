@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KORA KDM - تسجيل الدخول</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            /* خلفية الملعب الداكنة والمثيرة الكروية */
+            background: linear-gradient(rgba(10, 17, 24, 0.85), rgba(10, 17, 24, 0.95)), 
+                        url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* زوايا الإضاءة الخضراء في أطراف الصفحة */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        /* قسم اللوجو في الأعلى */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-section .ball-icon {
+            font-size: 50px;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            animation: rotateBall 10s linear infinite;
+        }
+
+        .logo-section h1 {
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .logo-section h1 span {
+            color: #4CAF50;
+        }
+
+        .logo-section p {
+            color: #a0aec0;
+            font-size: 13px;
+            font-weight: 300;
+            margin-top: 2px;
+        }
+
+        /* كارت التصميم الزجاجي */
+        .glass-card {
+            background: rgba(15, 23, 33, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            width: 100%;
+            padding: 35px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .card-title {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card-subtitle {
+            color: #a0aec0;
+            font-size: 13px;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        /* مجموعات حقول الإدخال */
+        .input-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .input-group label {
+            display: block;
+            color: #cbd5e0;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            padding-right: 2px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            background: rgba(10, 15, 22, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 14px 12px 42px; /* مسافة للأيقونة اليسرى */
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+            text-align: right;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #4a5568;
+        }
+
+        .input-wrapper input:focus {
+            border-color: rgba(76, 175, 80, 0.5);
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.15);
+            background: rgba(10, 15, 22, 0.8);
+        }
+
+        /* الأيقونات داخل الحقول */
+        .input-icon-right {
+            position: absolute;
+            left: 15px; /* موضوعة لليسار لدعم لغات العرض الـ RTL المتناسقة */
+            color: #4a5568;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            color: #4a5568;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .input-wrapper input:focus ~ .input-icon-right,
+        .input-wrapper input:focus ~ .password-toggle {
+            color: #4CAF50;
+        }
+
+        /* رابط نسيت كلمة المرور */
+        .forgot-pass {
+            display: block;
+            text-align: right;
+            color: #4CAF50;
+            font-size: 12px;
+            text-decoration: none;
+            margin-top: -12px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+
+        .forgot-pass:hover {
+            opacity: 0.8;
+        }
+
+        /* زر الإرسال الرئيسي الأخضر */
+        .btn-submit {
+            width: 100%;
+            background: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .btn-submit:hover {
+            background: #43a047;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        /* الفاصل (أو) */
+        .divider {
+            display: flex;
+            align-items: center;
+            color: #4a5568;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .divider span {
+            padding: 0 10px;
+        }
+
+        /* أزرار السوشيال ميديا */
+        .btn-social {
+            width: 100%;
+            background: rgba(10, 15, 22, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 11px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-social:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-social i.fa-google { color: #ea4335; }
+        .btn-social i.fa-facebook-f { color: #1877f2; }
+
+        /* أسفل الكارت التبديل بين الصفحات */
+        .card-footer {
+            margin-top: 25px;
+            color: #cbd5e0;
+            font-size: 13px;
+        }
+
+        .card-footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 700;
+            margin-right: 5px;
+        }
+
+        .card-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes rotateBall {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-section">
+            <i class="fa-solid fa-regular fa-futbol ball-icon"></i>
+            <h1>KORA <span>KDM</span></h1>
+            <p>عيش شغف كرة القدم</p>
+        </div>
+
+        <div class="glass-card">
+            <h2 class="card-title">تسجيل الدخول</h2>
+            <p class="card-subtitle">مرحباً بعودتك! سجل دخولك للمتابعة</p>
+
+            <form action="#">
+                <div class="input-group">
+                    <label>البريد الإلكتروني</label>
+                    <div class="input-wrapper">
+                        <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        <i class="fa-regular fa-envelope input-icon-right"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>كلمة المرور</label>
+                    <div class="input-wrapper">
+                        <input type="password" placeholder="أدخل كلمة المرور" id="passwordField" required>
+                        <i class="fa-regular fa-eye-slash password-toggle" onclick="togglePassword()"></i>
+                        <i class="fa-solid fa-lock input-icon-right"></i>
+                    </div>
+                </div>
+
+                <a href="#" class="forgot-pass">نسيت كلمة المرور؟</a>
+
+                <button type="submit" class="btn-submit">
+                    تسجيل الدخول
+                    <i class="fa-solid fa-arrow-right-to-bracket" style="transform: rotate(180deg);"></i>
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>أو</span>
+            </div>
+
+            <button class="btn-social">
+                <i class="fa-brands fa-google"></i>
+                تسجيل الدخول عبر Google
+            </button>
+
+            <button class="btn-social" style="margin-bottom: 0;">
+                <i class="fa-brands fa-facebook-f"></i>
+                تسجيل الدخول عبر Facebook
+            </button>
+
+            <div class="card-footer">
+                ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // دالة لإظهار وإخفاء كلمة المرور تفاعلياً عند الضغط على العين
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordField');
+            const toggleIcon = document.querySelector('.password-toggle');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
+            }
+        }
+    </script>
+</body>
+</html>
