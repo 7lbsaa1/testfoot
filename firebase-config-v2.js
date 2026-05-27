@@ -1,7 +1,9 @@
-// firebase-config.import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+// 1. استدعاء المكتبات الرسمية بالإصدار المستقر المتوافق مع المتصفحات مباشرة
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+// 2. الكونفيج المظبوط والخاص بمشروعك
 const firebaseConfig = {
     apiKey: "AIzaSyBEZLBEEWH_CLc69RQLemG0UBVU6ym0yIc",
     authDomain: "football-4fed6.firebaseapp.com",
@@ -13,8 +15,10 @@ const firebaseConfig = {
     measurementId: "G-NZF76V3KK5"
 };
 
+// 3. تهيئة خدمات الفايربيز الأساسية
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
 
+// 4. تصدير الأدوات عشان الصفحات التانية (login و register) تقدر تعمل لها import وتشتغل فوري
 export { auth, database, signInWithEmailAndPassword, createUserWithEmailAndPassword, ref, set };
