@@ -42,29 +42,79 @@
         .input-group label { display: block; color: #cbd5e0; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
         .input-wrapper { position: relative; display: flex; align-items: center; }
         .input-wrapper input, .input-wrapper select {
-            width: 100%; background: rgba(10, 15, 22, 0.6); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px; padding: 12px 14px 12px 42px; color: #ffffff; font-size: 14px; outline: none; text-align: right; appearance: none;
+            width: 100%; 
+            background: rgba(10, 15, 22, 0.6); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px; 
+            padding: 12px 40px 12px 42px; 
+            color: #ffffff; 
+            font-size: 14px; 
+            outline: none; 
+            text-align: right; 
+            appearance: none;
+            transition: border-color 0.3s;
         }
-        .input-wrapper input:focus, .input-wrapper select:focus { border-color: #4CAF50; }
-        .input-icon-right { position: absolute; left: 15px; color: #4a5568; font-size: 16px; }
-        .password-toggle { position: absolute; right: 15px; color: #4a5568; font-size: 14px; cursor: pointer; }
+        .input-wrapper input:focus, .input-wrapper select:focus { 
+            border-color: #4CAF50; 
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+        }
+        .input-icon-right { position: absolute; left: 15px; color: #4a5568; font-size: 16px; pointer-events: none; }
+        .password-toggle { 
+            position: absolute; 
+            right: 15px; 
+            color: #4a5568; 
+            font-size: 14px; 
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .password-toggle:hover { color: #4CAF50; }
         .select-arrow { position: absolute; right: 15px; color: #4a5568; font-size: 12px; pointer-events: none; }
         .checkbox-group { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
-        .checkbox-group input { accent-color: #4CAF50; width: 16px; height: 16px; }
-        .checkbox-group label { color: #cbd5e0; font-size: 13px; }
+        .checkbox-group input { accent-color: #4CAF50; width: 16px; height: 16px; cursor: pointer; }
+        .checkbox-group label { color: #cbd5e0; font-size: 13px; cursor: pointer; }
         .checkbox-group label span { color: #4CAF50; font-weight: 600; }
         .btn-submit {
-            width: 100%; background: #4CAF50; color: #ffffff; border: none; border-radius: 8px; padding: 12px;
-            font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); transition: all 0.3s;
+            width: 100%; 
+            background: #4CAF50; 
+            color: #ffffff; 
+            border: none; 
+            border-radius: 8px; 
+            padding: 12px;
+            font-size: 16px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); 
+            transition: all 0.3s;
         }
         .btn-submit:hover { background: #43a047; transform: translateY(-1px); }
+        .btn-submit:disabled { 
+            background: #999; 
+            cursor: not-allowed; 
+            opacity: 0.6;
+        }
         .card-footer { margin-top: 25px; color: #cbd5e0; font-size: 13px; text-align: center; }
-        .card-footer a { color: #4CAF50; font-weight: 700; margin-right: 5px; }
-        @media (max-width: 400px) { .row-fields { flex-direction: column; gap: 0; } }
+        .card-footer a { color: #4CAF50; font-weight: 700; margin-right: 5px; text-decoration: none; }
+        .card-footer a:hover { text-decoration: underline; }
+        .error-message { 
+            color: #ff6b6b; 
+            font-size: 12px; 
+            margin-top: 5px;
+            display: none;
+        }
+        .success-message {
+            color: #4CAF50;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        @media (max-width: 400px) { 
+            .row-fields { flex-direction: column; gap: 0; }
+            .glass-card { padding: 25px 20px; }
+        }
     </style>
 </head>
 <body>
-
+ 
     <div class="container">
         <div class="logo-section">
             <img src="7lbsaa7.png" alt="7lbsaa Logo" class="main-logo">
@@ -72,93 +122,92 @@
             <h1>حليشة <span>كورة</span></h1>
             <p>عيش شغف كرة القدم</p>
         </div>
-
+ 
         <div class="glass-card">
             <h2 class="card-title">إنشاء حساب جديد</h2>
             <p class="card-subtitle">انضم إلينا الآن وكن جزءاً من مجتمع عشاق كرة القدم</p>
-
-            <form>
+ 
+            <form id="registerForm">
                 <div class="row-fields">
                     <div class="input-group">
-                        <label>الاسم الكامل</label>
+                        <label for="regFullName">الاسم الكامل</label>
                         <div class="input-wrapper">
                             <input type="text" id="regFullName" placeholder="أدخل اسمك الكامل" required>
                             <i class="fa-regular fa-user input-icon-right"></i>
                         </div>
+                        <div class="error-message" id="fullNameError"></div>
                     </div>
                     <div class="input-group">
-                        <label>اسم المستخدم</label>
+                        <label for="regUsername">اسم المستخدم</label>
                         <div class="input-wrapper">
                             <input type="text" id="regUsername" placeholder="اختر اسم مستخدم" required>
                             <i class="fa-regular fa-user input-icon-right"></i>
                         </div>
+                        <div class="error-message" id="usernameError"></div>
                     </div>
                 </div>
-
+ 
                 <div class="input-group">
-                    <label>البريد الإلكتروني</label>
+                    <label for="regEmail">البريد الإلكتروني</label>
                     <div class="input-wrapper">
                         <input type="email" id="regEmail" placeholder="أدخل بريدك الإلكتروني" required>
                         <i class="fa-regular fa-envelope input-icon-right"></i>
                     </div>
+                    <div class="error-message" id="emailError"></div>
                 </div>
-
+ 
                 <div class="input-group">
-                    <label>كلمة المرور</label>
+                    <label for="regPass1">كلمة المرور</label>
                     <div class="input-wrapper">
                         <input type="password" placeholder="أدخل كلمة المرور" id="regPass1" required>
-                        <i class="fa-regular fa-eye-slash password-toggle" onclick="togglePass('regPass1', this)"></i>
+                        <i class="fa-regular fa-eye-slash password-toggle" onclick="togglePass('regPass1', this)" style="cursor: pointer;"></i>
                         <i class="fa-solid fa-lock input-icon-right"></i>
                     </div>
+                    <div class="error-message" id="pass1Error"></div>
                 </div>
-
+ 
                 <div class="input-group">
-                    <label>تأكيد كلمة المرور</label>
+                    <label for="regPass2">تأكيد كلمة المرور</label>
                     <div class="input-wrapper">
                         <input type="password" placeholder="أعد إدخال كلمة المرور" id="regPass2" required>
-                        <i class="fa-regular fa-eye-slash password-toggle" onclick="togglePass('regPass2', this)"></i>
+                        <i class="fa-regular fa-eye-slash password-toggle" onclick="togglePass('regPass2', this)" style="cursor: pointer;"></i>
                         <i class="fa-solid fa-lock input-icon-right"></i>
                     </div>
+                    <div class="error-message" id="pass2Error"></div>
                 </div>
-
+ 
                 <div class="input-group">
-                    <label>تاريخ الميلاد</label>
+                    <label for="regBirthYear">تاريخ الميلاد</label>
                     <div class="input-wrapper">
                         <select id="regBirthYear" required>
                             <option value="" disabled selected hidden>اختر تاريخ ميلادك</option>
-                            <script>
-                                const currentYear = new Date().getFullYear();
-                                for(let i = currentYear; i >= 1950; i--) {
-                                    document.write(`<option value="${i}">${i}</option>`);
-                                }
-                            </script>
                         </select>
                         <i class="fa-solid fa-chevron-down select-arrow"></i>
                         <i class="fa-regular fa-calendar input-icon-right"></i>
                     </div>
+                    <div class="error-message" id="birthYearError"></div>
                 </div>
-
+ 
                 <div class="checkbox-group">
                     <input type="checkbox" id="termsCheck" required>
                     <label for="termsCheck">أوافق على <span>الشروط والأحكام</span> و<span>سياسة الخصوصية</span></label>
                 </div>
-
-                <button type="submit" class="btn-submit">إنشاء حساب</button>
+ 
+                <button type="submit" class="btn-submit" id="submitBtn">إنشاء حساب</button>
             </form>
-
+ 
             <div class="card-footer">
                 لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
             </div>
         </div>
     </div>
-
+ 
     <script type="module">
-        // استدعاء مباشر وموثوق لـ GitHub Pages بدون وسيط
+        // Firebase Imports
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-
-        // إعدادات فايربيز الصحيحة والمباشرة
+ 
         const firebaseConfig = {
             apiKey: "AIzaSyBEZLBEEWH_CLc69RQLemG0UBVU6ym0yIc",
             authDomain: "football-4fed6.firebaseapp.com",
@@ -169,64 +218,149 @@
             appId: "1:605473270039:web:8d6f74cfc8c9a46279ef52",
             measurementId: "G-NZF76V3KK5"
         };
-
+ 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
-
-        // دالة إظهار وإخفاء كلمة المرور
+ 
+        // ✅ دالة إظهار/إخفاء كلمة المرور محسّنة
         window.togglePass = function(id, icon) {
             const input = document.getElementById(id);
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.replace('fa-eye-slash', 'fa-eye');
-            } else {
-                input.type = 'password';
-                icon.classList.replace('fa-eye', 'fa-eye-slash');
-            }
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
         }
-
-        const registerForm = document.querySelector('form');
-        registerForm.addEventListener('submit', (e) => {
+ 
+        // ✅ ملء قائمة السنوات بشكل صحيح
+        const selectYear = document.getElementById('regBirthYear');
+        const currentYear = new Date().getFullYear();
+        for(let i = currentYear; i >= 1950; i--) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            selectYear.appendChild(option);
+        }
+ 
+        // ✅ دالة التحقق من صحة البيانات
+        function validateForm(fullName, username, email, pass1, pass2, birthYear, termsCheck) {
+            let isValid = true;
+ 
+            // مسح الرسائل السابقة
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+                el.textContent = '';
+            });
+ 
+            // التحقق من الاسم الكامل
+            if (!fullName.trim() || fullName.trim().length < 3) {
+                document.getElementById('fullNameError').style.display = 'block';
+                document.getElementById('fullNameError').textContent = '❌ الاسم يجب أن يكون 3 أحرف على الأقل';
+                isValid = false;
+            }
+ 
+            // التحقق من اسم المستخدم
+            if (!username.trim() || username.trim().length < 3) {
+                document.getElementById('usernameError').style.display = 'block';
+                document.getElementById('usernameError').textContent = '❌ اسم المستخدم يجب أن يكون 3 أحرف على الأقل';
+                isValid = false;
+            }
+ 
+            // التحقق من البريد الإلكتروني
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('emailError').textContent = '❌ البريد الإلكتروني غير صحيح';
+                isValid = false;
+            }
+ 
+            // التحقق من كلمة المرور
+            if (pass1.length < 6) {
+                document.getElementById('pass1Error').style.display = 'block';
+                document.getElementById('pass1Error').textContent = '❌ كلمة المرور يجب أن تكون 6 أحرف على الأقل';
+                isValid = false;
+            }
+ 
+            // التحقق من تطابق كلمات المرور
+            if (pass1 !== pass2) {
+                document.getElementById('pass2Error').style.display = 'block';
+                document.getElementById('pass2Error').textContent = '❌ كلمتا المرور غير متطابقتين';
+                isValid = false;
+            }
+ 
+            // التحقق من تاريخ الميلاد
+            if (!birthYear) {
+                document.getElementById('birthYearError').style.display = 'block';
+                document.getElementById('birthYearError').textContent = '❌ يرجى اختيار تاريخ ميلادك';
+                isValid = false;
+            }
+ 
+            // التحقق من الشروط والأحكام
+            if (!termsCheck) {
+                alert('❌ يجب أن توافق على الشروط والأحكام');
+                isValid = false;
+            }
+ 
+            return isValid;
+        }
+ 
+        // ✅ معالج الإرسال
+        const registerForm = document.getElementById('registerForm');
+        registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-
+ 
             const fullName = document.getElementById('regFullName').value;
             const username = document.getElementById('regUsername').value;
             const email = document.getElementById('regEmail').value;
             const pass1 = document.getElementById('regPass1').value;
             const pass2 = document.getElementById('regPass2').value;
             const birthYear = document.getElementById('regBirthYear').value;
-
-            if (pass1 !== pass2) {
-                alert("❌ كلمتا المرور غير متطابقتين!");
+            const termsCheck = document.getElementById('termsCheck').checked;
+            const submitBtn = document.getElementById('submitBtn');
+ 
+            // التحقق من البيانات
+            if (!validateForm(fullName, username, email, pass1, pass2, birthYear, termsCheck)) {
                 return;
             }
-
-            createUserWithEmailAndPassword(auth, email, pass1)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    
-                    set(ref(database, 'users/' + user.uid), {
-                        fullName: fullName,
-                        username: username,
-                        email: email,
-                        birthYear: birthYear,
-                        coins: 100, 
-                        score: 0,
-                        role: "user"
-                    })
-                    .then(() => {
-                        alert("🎉 تم إنشاء الحساب بنجاح! جاري تحويلك لصفحة تسجيل الدخول...");
-                        window.location.href = "login.html";
-                    });
-                })
-                .catch((error) => {
-                    if (error.code === 'auth/email-already-in-use') {
-                        alert("❌ هذا البريد الإلكتروني مسجل بالفعل!");
-                    } else {
-                        alert("❌ خطأ أثناء التسجيل: " + error.message);
-                    }
+ 
+            // تعطيل الزر أثناء المعالجة
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'جاري الإنشاء...';
+ 
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, pass1);
+                const user = userCredential.user;
+                
+                await set(ref(database, 'users/' + user.uid), {
+                    fullName: fullName,
+                    username: username,
+                    email: email,
+                    birthYear: birthYear,
+                    coins: 100, 
+                    score: 0,
+                    role: "user",
+                    createdAt: new Date().toISOString()
                 });
+ 
+                alert("🎉 تم إنشاء الحساب بنجاح!");
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 1500);
+ 
+            } catch (error) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'إنشاء حساب';
+ 
+                if (error.code === 'auth/email-already-in-use') {
+                    document.getElementById('emailError').style.display = 'block';
+                    document.getElementById('emailError').textContent = '❌ هذا البريد الإلكتروني مسجل بالفعل!';
+                } else if (error.code === 'auth/weak-password') {
+                    document.getElementById('pass1Error').style.display = 'block';
+                    document.getElementById('pass1Error').textContent = '❌ كلمة المرور ضعيفة جداً';
+                } else {
+                    alert("❌ خطأ: " + error.message);
+                }
+            }
         });
     </script>
 </body>
