@@ -102,11 +102,10 @@
                 ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a>
             </div>
         </div>
-    </div>
-
-    <script type="module">
-        import { auth, signInWithEmailAndPassword } from "./firebase-config.js";
-
+</div> <script type="module">
+        // التعديل الصحيح: استدعاء الأدوات الصريحة والإشارة للملف الجديد v2
+        import { auth, signInWithEmailAndPassword } from "./firebase-config-v2.js";
+        
         window.togglePassword = function() {
             const passwordInput = document.getElementById('loginPassword');
             const toggleIcon = document.querySelector('.password-toggle');
