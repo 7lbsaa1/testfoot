@@ -328,8 +328,12 @@
         </div>
     </div>
 
-    <script>
-        function togglePass(id, icon) {
+<script type="module">
+        // استدعاء دوال الفايربيز من ملف الإعدادات
+        import { auth, database, createUserWithEmailAndPassword, ref, set } from "./firebase-config.js";
+
+        // تشغيل وإخفاء الباسورد
+        window.togglePass = function(id, icon) {
             const input = document.getElementById(id);
             if (input.type === 'password') {
                 input.type = 'text';
@@ -339,6 +343,56 @@
                 icon.classList.replace('fa-eye', 'fa-eye-slash');
             }
         }
-    </script>
-</body>
+
+        // الاستماع لحدث إرسال الفورم (إنشاء حساب)
+        const registerForm = document.querySelector('form');
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // منع الصفحة من الريفرش
+
+            // جلب البيانات من الحقول المكتوبة
+            const fullName = document.querySelectorAll('input[type="text"]')[0].value;
+            const username = document.querySelectorAll('input[type="text"]')[1].value;
+            const email = document.querySelector('input[type="email"]').value;
+            const pass1 = document.getElementById('pass1').value;
+            const pass2 = document.getElementById('pass2').value;
+            const birthYear = document.querySelector('select').value;
+
+            // التحقق من تطابق كلمتي المرور
+            if (pass1 !== pass2) {
+                alert("❌ كلمتا المرور غير متطابقتين!");
+                return;
+            }
+
+            // 1. تسجيل الحساب في الـ Authentication الخاص بفايربيز
+            createUserWithEmailAndPassword(auth, email, pass1)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    
+                    // 2. حفظ البيانات الإضافية في الـ Realtime Database باسم اليوزر
+                    set(ref(database, 'users/' + user.uid), {
+                        fullName: fullName,
+                        username: username,
+                        email: email,
+                        birthYear: birthYear,
+                        coins: 100, // رصيد افتراضي ترحيبي للاعب البداية
+                        score: 0,   // الاسكور الافتراضي في اللعبة
+                        role: "user" // رتبة الحساب
+                    })
+                    .then(() => {
+                        alert("🎉 تم إنشاء حسابك بنجاح وجاري توجيهك للردهة!");
+                        window.location.href = "login.html"; // توجيه لصفحة تسجيل الدخول
+                    });
+                })
+                .catch((error) => {
+                    // عرض الأخطاء الشائعة بشكل مفهوم عربي
+                    if (error.code === 'auth/email-already-in-use') {
+                        alert("❌ هذا البريد الإلكتروني مسجل بالفعل بحساب آخر!");
+                    } else if (error.code === 'auth/weak-password') {
+                        alert("❌ كلمة المرور ضعيفة جداً! يجب أن تكون 6 أحرف أو أكثر.");
+                    } else {
+                        alert("❌ خطأ: " + error.message);
+                    }
+                });
+        });
+    </script></body>
 </html>
