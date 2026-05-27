@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>7lbsaa كورة - إنشاء حساب جديد</title>
+    <title>حليشة كورة - إنشاء حساب جديد</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -11,7 +11,12 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body {
             background: linear-gradient(rgba(10, 17, 24, 0.75), rgba(10, 17, 24, 0.85)), url('back.jpg') no-repeat center center fixed;
-            background-size: cover; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 40px 20px;
+            background-size: cover; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 40px 20px;
         }
         .container { width: 100%; max-width: 480px; display: flex; flex-direction: column; align-items: center; }
         .logo-section { text-align: center; margin-bottom: 25px; }
@@ -20,8 +25,14 @@
         .logo-section h1 { color: #ffffff; font-size: 28px; font-weight: 800; }
         .logo-section h1 span { color: #4CAF50; }
         .glass-card {
-            background: rgba(15, 23, 33, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; width: 100%; padding: 35px 30px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(15, 23, 33, 0.75); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            border-radius: 16px; 
+            width: 100%; 
+            padding: 35px 30px; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         .card-title { color: #ffffff; font-size: 24px; font-weight: 700; margin-bottom: 8px; text-align: center; }
         .card-subtitle { color: #a0aec0; font-size: 13px; margin-bottom: 25px; text-align: center; }
@@ -58,7 +69,7 @@
         <div class="logo-section">
             <img src="7lbsaa7.png" alt="7lbsaa Logo" class="main-logo">
             <img src="football-soccer.gif" alt="Football Animated" class="ball-gif">
-            <h1>7lbsaa <span>كورة</span></h1>
+            <h1>حليشة <span>كورة</span></h1>
             <p>عيش شغف كرة القدم</p>
         </div>
 
@@ -135,16 +146,17 @@
                 <button type="submit" class="btn-submit">إنشاء حساب</button>
             </form>
 
-<div class="card-footer">
+            <div class="card-footer">
                 لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
             </div>
         </div>
     </div>
 
     <script type="module">
-        // هنا بنستدعي الأدوات بالأسماء الصريحة بدون "..." وبنشاور على الملف الجديد
+        // استدعاء الأدوات بالأسماء الصريحة والإشارة إلى ملف الكونفيج الجديد v2 لتخطي الكاش
         import { auth, database, createUserWithEmailAndPassword, ref, set } from "./firebase-config-v2.js";
-        
+
+        // دالة إظهار وإخفاء كلمة المرور
         window.togglePass = function(id, icon) {
             const input = document.getElementById(id);
             if (input.type === 'password') {
@@ -156,9 +168,10 @@
             }
         }
 
+        // معالجة إرسال الفورم وحفظ البيانات
         const registerForm = document.querySelector('form');
         registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // منع الصفحة من إعادة التحميل الافتراضية
 
             const fullName = document.getElementById('regFullName').value;
             const username = document.getElementById('regUsername').value;
@@ -167,65 +180,24 @@
             const pass2 = document.getElementById('regPass2').value;
             const birthYear = document.getElementById('regBirthYear').value;
 
+            // التحقق من تطابق كلمتي المرور
             if (pass1 !== pass2) {
                 alert("❌ كلمتا المرور غير متطابقتين!");
                 return;
             }
 
+            // إنشاء الحساب في Firebase Authentication
             createUserWithEmailAndPassword(auth, email, pass1)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     
-                    // حفظ البيانات الإضافية في الداتابيز وإعطاء المستخدم 100 كوين كهدية
+                    // حفظ البيانات الإضافية داخل الـ Realtime Database وإعطاء المستخدم هدية 100 كوين
                     set(ref(database, 'users/' + user.uid), {
                         fullName: fullName,
                         username: username,
                         email: email,
                         birthYear: birthYear,
-                        coins: 100,
-                        score: 0,
-                        role: "user"
-                    })
-                    .then(() => {
-                        alert("🎉 تم إنشاء الحساب بنجاح! جاري تحويلك لصفحة تسجيل الدخول...");
-                        window.location.href = "login.html";
-                    });
-                })
-                .catch((error) => {
-                    if (error.code === 'auth/email-already-in-use') {
-                        alert("❌ هذا البريد الإلكتروني مسجل بالفعل!");
-                    } else {
-                        alert("❌ خطأ أثناء التسجيل: " + error.message);
-                    }
-                });
-        });
-    </script>
-        const registerForm = document.querySelector('form');
-        registerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const fullName = document.getElementById('regFullName').value;
-            const username = document.getElementById('regUsername').value;
-            const email = document.getElementById('regEmail').value;
-            const pass1 = document.getElementById('regPass1').value;
-            const pass2 = document.getElementById('regPass2').value;
-            const birthYear = document.getElementById('regBirthYear').value;
-
-            if (pass1 !== pass2) {
-                alert("❌ كلمتا المرور غير متطابقتين!");
-                return;
-            }
-
-            createUserWithEmailAndPassword(auth, email, pass1)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    // حفظ البيانات الإضافية في الداتابيز وإعطاء المستخدم 100 كوين كهدية ترحيبية
-                    set(ref(database, 'users/' + user.uid), {
-                        fullName: fullName,
-                        username: username,
-                        email: email,
-                        birthYear: birthYear,
-                        coins: 100,
+                        coins: 100, // الهدية الترحيبية
                         score: 0,
                         role: "user"
                     })
