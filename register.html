@@ -77,7 +77,7 @@
             <h2 class="card-title">إنشاء حساب جديد</h2>
             <p class="card-subtitle">انضم إلينا الآن وكن جزءاً من مجتمع عشاق كرة القدم</p>
 
-            <form id="registerForm">
+            <form id="regForm">
                 <div class="row-fields">
                     <div class="input-group">
                         <label>الاسم الكامل</label>
@@ -157,7 +157,6 @@
         import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-        // إعدادات مشروعك الصحيحة 100% بدون أي مسافات أو رموز غريبة
         const firebaseConfig = {
             apiKey: "AIzaSyBEZLBEEWH_CLc69RQLemG0UBVU6ym0yIc",
             authDomain: "football-4fed6.firebaseapp.com",
@@ -169,12 +168,10 @@
             measurementId: "G-NZF76V3KK5"
         };
 
-        // تهيئة فايربيز
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const database = getDatabase(app);
 
-        // دالة إخفاء وإظهار الباسورد
         window.togglePass = function(id, icon) {
             const input = document.getElementById(id);
             if (input.type === 'password') {
@@ -186,8 +183,7 @@
             }
         }
 
-        // التعامل مع الفورم عند الإرسال
-        const registerForm = document.getElementById('registerForm');
+        const registerForm = document.getElementById('regForm');
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -203,12 +199,10 @@
                 return;
             }
 
-            // إنشاء الحساب في Authentication
             createUserWithEmailAndPassword(auth, email, pass1)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     
-                    // حفظ بيانات المستخدم الإضافية في Realtime Database
                     set(ref(database, 'users/' + user.uid), {
                         fullName: fullName,
                         username: username,
@@ -223,7 +217,7 @@
                         window.location.href = "login.html";
                     })
                     .catch((dbError) => {
-                        alert("❌ تم إنشاء الحساب ولكن فشل حفظ البيانات في قاعدة البيانات: " + dbError.message);
+                        alert("❌ تم إنشاء الحساب لكن فشل حفظ البيانات بالداتابيز: " + dbError.message);
                     });
                 })
                 .catch((error) => {
